@@ -1,5 +1,5 @@
 class CreateProducts < ActiveRecord::Migration
-  def change
+  def self.up
     create_table :products do |t|
       t.string :name
       t.string :sku_id
@@ -13,5 +13,9 @@ class CreateProducts < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+  end
+
+  def self.down
+    drop_table :products
   end
 end
