@@ -7,7 +7,12 @@ class Product < ActiveRecord::Base
   serialize :vars, Hash
 
   validates :name, :sku_id, :description, :categories, :tags, :vars, presence: true
-  validates :price, :collection_id, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates_numericality_of :price, :collection_id, presence: true, :only_integer => true
+  validate :price_check
+
+  def price_check
+    errors.add(:price, "should be multipled by 100") if price%100 > 0
+  end
 
 
 end
