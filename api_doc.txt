@@ -1,6 +1,6 @@
 Api:
 
-@api - Post - http://localhost:3000/api/v1/products.json
+@api - Post - https://vast-savannah-94151.herokuapp.com/api/v1/products.json
 @apiHeader {String} Content-Type application/json
 Input  :
 
