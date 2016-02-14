@@ -3,6 +3,9 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+
+*** Please refer api_doc.txt for example api request and response. ***
+
 Things you may want to cover:
 
 * Ruby version

@@ -10,59 +10,70 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sku_id %><br>
+        <%= f.text_field :sku_id %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %><br>
+        <%= f.text_field :price %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </div>
+      <div class="form-group">
+        <%= f.label :expire_date %><br>
+        <%= f.date_select :expire_date %>
+      </div>
+      <div class="form-group">
+        <%= f.label :categories %><br>
+        <%= f.text_area :categories %>
+      </div>
+    </div>
+    <div class="col-md-4">
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :sku_id %><br>
-    <%= f.text_field :sku_id %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :expire_date %><br>
-    <%= f.date_select :expire_date %>
-  </div>
-  <div class="field">
-    <%= f.label :categories %><br>
-    <%= f.text_area :categories %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br>
-    <%= f.text_area :tags %>
-  </div>
-  <div class="field">
-    <%= f.label :vars %><br>
-    <%= f.text_area :vars %>
-  </div>
-  <div class="field">
-    <%= f.label :collection_id %><br>
-    <%= f.number_field :collection_id %>
+      <div class="form-group">
+        <%= f.label :tags %><br>
+        <%= f.text_area :tags %>
+      </div>
+      <% vars = f.object.vars %>
+      <% vars.each do |key, value| %>
+          <div class="form-group">
+            <%= f.label key %><br />
+            <%= text_field_tag "product[vars][" + key + "]", value.class == Array ? value.join(",") : value %>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :collection_id %><br>
+        <%= f.number_field :collection_id %>
+      </div>
+
+      <div class="form-group">
+        <%if @product.new_record? %>
+            <%= f.label :pictures, :class => 'control-label' %>
+            <div class="controls">
+              <%= file_field_tag "images[]", type: :file, multiple: true %>
+            </div>
+        <%else%>
+            <label><b>Images</b></label>
+            <div>
+            <%@product.pictures.each{|pic|%>
+                <%= image_tag pic.image.url(:thumb) %><br/><br/>
+            <%}%>
+            </div>
+        <%end%>
+      </div>
+    </div>
   </div>
 
-  <div class="control-group">
-    <%if @product.new_record? %>
-        <%= f.label :pictures, :class => 'control-label' %>
-        <div class="controls">
-        <%= file_field_tag "images[]", type: :file, multiple: true %>
-        </div>
-   <%else%>
-        <%@product.pictures.each{|pic|%>
-        <%= image_tag pic.image.url(:thumb) %><br/>
-        <%}%>
-   <%end%>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions" >
+    <%= f.submit type: "submit", class:"btn btn-primary"%>
   </div>
 <% end %>

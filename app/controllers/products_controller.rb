@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.all.page(params[:page]).per(5)
   end
 
   # GET /products/1
@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to edit_product_path(@product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -75,6 +75,8 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :sku_id, :price, :description, :expire_date, :categories, :tags, :vars, :collection_id)
+      params.require(:product).permit(:name, :sku_id, :price, :description, :expire_date, {:categories => []}, {:tags => []}, :collection_id).tap do |whitelisted|
+        whitelisted[:vars] = params[:product][:vars]
+      end
     end
 end

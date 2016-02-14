@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -35,11 +33,13 @@
   <%= @product.tags %>
 </p>
 
-<p>
-  <strong>Vars:</strong>
-  <%= @product.vars %>
-</p>
-
+<% vars = @product.vars %>
+<% vars.each do |key, value| %>
+    <p>
+      <strong><%= key %></strong>
+      <%= value.class == Array ? value.join(",") : value %>
+    </p>
+<% end %>
 <p>
   <strong>Collection:</strong>
   <%= @product.collection_id %>

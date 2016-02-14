@@ -10,7 +10,7 @@ module Api
 
       def create
         args = params
-        images = args[:parameters][:images].map{|img| img["image_path"]}
+        images = args[:parameters][:images].present? ? args[:parameters][:images].map{|img| img["image_path"]} : []
         args[:parameters].delete(:images)
         options = args[:parameters]
         options[:categories] = options[:categories].join(",")

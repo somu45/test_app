@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+
   get "/" => "home#index"
+  root 'home#index'
   scope '/admin' do
     resources :products
   end

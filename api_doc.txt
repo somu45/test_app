@@ -1,0 +1,23 @@
+Api:
+
+@api - Post - http://localhost:3000/api/v1/products.json
+@apiHeader {String} Content-Type application/json
+Input  :
+
+
+{
+ "parameters": {
+    "name": "sony mobile",
+    "sku_id": "1234",
+    "price": 200.0,
+    "description": "mobile phone",
+    "expire_date": "2016-02-14",
+    "categories": ["mobile","electronics","Gadgets"],
+    "tags": ["sony", "mobile"],
+    "vars": { "color": "black", "models": ["914", "924"]},
+    "collection_id": 123,
+     "images": [{"image_path": "http://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg?81b51f"},
+                       {"image_path": "http://www.arabamerica.com/wp-content/themes/arabamerica/assets/img/thumbnail-default.jpg?81b51f"}
+                     ]
+  }
+}
