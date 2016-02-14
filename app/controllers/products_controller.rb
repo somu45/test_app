@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  protect_from_forgery :except => :create
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
